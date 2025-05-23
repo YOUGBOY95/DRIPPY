@@ -48,6 +48,9 @@
       gap: 1rem;
     }
 
+
+    
+
     .header-actions .btn-buy {
     background: #facc15;
     border: 2px solid black;
@@ -208,6 +211,55 @@
     .drip-icons img:active {
   transform: scale(0.95);
   transition: transform 0.1s ease;
+}
+
+
+
+
+.typewriter h2 {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .10em;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 2.5rem;
+    color: #111;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #facc15; }
+}
+
+.content .typewriter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+/* Adaptation mobile */
+@media screen and (max-width: 480px) {
+    .typewriter h2 {
+        font-size: 1.5rem;
+        letter-spacing: .1em;
+    }
+}
+
+
+
+
+
+.content h2 {
+    display: inline-block;
+    max-width: 100%;
 }
 
 
@@ -407,10 +459,11 @@
     color: #111;
     padding: 0.5rem;
     transition: transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: -2px; 
+    
 }
+
+
 
 @media screen and (max-width: 480px) {
     header {
@@ -452,27 +505,27 @@
   </style>
 </head>
 <body>
-  <header>
+<header>
     <h1>DRIPPY</h1>
     <audio id="backgroundMusic" loop>
-      <source src="./assets/drip.mp3" type="audio/mpeg">
-  </audio>
-  <button id="musicToggle" class="music-toggle">
-      <i class="fas fa-volume-mute"></i>
-  </button>
-  <button class="burger-menu" id="burgerButton">
-      <span></span>
-      <span></span>
-      <span></span>
-  </button>
+        <source src="./assets/drip.mp3" type="audio/mpeg">
+    </audio>
+    <button class="burger-menu" id="burgerButton">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="header-actions" id="mobileMenu">    
-        <a href="https://axiom.trade/" class="btn-buy">BUY</a>
+        <a href="https://axiom.trade/" class="btn-buy">BUY DRIPPY</a>
         <a href="https://x.com/thedrippyart" target="_blank" class="icon-link">
             <img src="./assets/twitter.png" alt="Twitter" style="height: 24px; width: 24px;">
         </a>
         <a href="https://t.me/thedrippyart" target="_blank" class="icon-link">
             <img src="./assets/telegram.png" alt="Telegram" style="height: 24px; width: 24px;">
         </a>
+       <button id="musicToggle" class="music-toggle">
+         <i class="fas fa-volume-mute"></i>
+</button>
     </div>
 </header>
   <audio id="clickSound">
@@ -523,20 +576,36 @@
 
   // Toggle music
 
-  document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
     const music = document.getElementById('backgroundMusic');
     const musicToggle = document.getElementById('musicToggle');
     const icon = musicToggle.querySelector('i');
-    let isMuted = true;
+    let isMuted = false;
 
+    // Changer l'icône initiale en volume-up
+    icon.className = 'fas fa-volume-up';
+
+    // Fonction pour démarrer la musique
+    const startMusic = async () => {
+        try {
+            await music.play();
+            icon.className = 'fas fa-volume-up';
+            isMuted = false;
+        } catch (error) {
+            console.log("Erreur de lecture:", error);
+            // Si erreur, on passe en mode muet
+            icon.className = 'fas fa-volume-mute';
+            isMuted = true;
+        }
+    };
+
+    // Essayer de démarrer la musique immédiatement
+    startMusic();
+
+    // Au clic sur le bouton
     musicToggle.addEventListener('click', () => {
         if (isMuted) {
-            music.play().then(() => {
-                icon.className = 'fas fa-volume-up';
-                isMuted = false;
-            }).catch(error => {
-                console.log("Erreur de lecture:", error);
-            });
+            startMusic();
         } else {
             music.pause();
             icon.className = 'fas fa-volume-mute';
@@ -544,10 +613,9 @@
         }
     });
 
-    // Gestion de l'autoplay
-    music.volume = 0.5; // Volume à 50%
+    // Gestion du volume
+    music.volume = 0.5;
 });
-
   
  // Menu burger
  document.addEventListener('DOMContentLoaded', () => {
@@ -591,22 +659,33 @@
   </section>
 
   <div id="copyContainer" style="display: flex; justify-content: center; align-items: center; margin-top: 1rem; font-family: 'Luckiest Guy', cursive; font-size: 1.1rem;">
-    <span style="margin-right: 12px;">CA : <span id="drippyCode">Coming Soon</span></span>         
+    <span style="margin-right: 12px;">CA : <span id="drippyCode">Coming Soon PUMP</span></span>      
     <button id="copyBtn" onclick="copyDrippyCode()" style="background-color: #facc15;  border: 2px solid black; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-family: 'Luckiest Guy', cursive; font-size: 1rem; transition: all 0.3s ease;">
       Copy
     </button>
   </div>
   
-  
+  <br>
 
   <section class="content">
-    <h2>Welcome to DRIPPY World</h2>
+    <div class="typewriter">
+        <h2>Welcome to DRIPPY World</h2>
+    </div>
     <p>
-        DRIPPY is the perfect coin for real ones who stay dripped out! So if you’ve got the drip too, this coin was made for you ! 💧👑💸
+        DRIPPY is the perfect coin for real ones who stay dripped out! So if you’ve got the drip too, this coin was made for you ! 🫵💧
     </p>
     <img src="./assets/roi.png" alt="Drippy" />
-    <br />
-    <a href="https://axiom.trade/" class="btn">Buy DRIPPY</a>
+     <div class="socials">
+    <h3>Join the Community</h3>
+      <a href="https://x.com/thedrippyart" target="_blank" class="icon-link">
+        <img src="./assets/twitter.png" alt="Twitter" style="height: 32px; width: 32px;">
+      </a>
+      <a href="https://t.me/thedrippyart" target="_blank" class="icon-link">
+        <img src="./assets/telegram.png" alt="Telegram" style="height: 32px; width: 32px;">
+      </a>
+    </div>
+
+     <a href="https://axiom.trade/" class="btn">Buy DRIPPY</a>
 
     <div class="drip-icons">
       <img src="./assets/dollars.png" alt="Drip Dollar" />
@@ -614,15 +693,9 @@
       <img src="./assets/coin.png" alt="Drip Coin" />
     </div>
 
-    <div class="socials">
-      <h3>Join the Community</h3>
-      <a href="https://x.com/thedrippyart" target="_blank" class="icon-link">
-        <img src="./assets/twitter.png" alt="Twitter" style="height: 32px; width: 32px;">
-      </a>
-      <a href="https://t.me/thedrippyart"icon-link">
-        <img src="./assets/telegram.png" alt="Telegram" style="height: 32px; width: 32px;">
-      </a>
-    </div>
+    
+
+   
   </section>
 
   <footer>
