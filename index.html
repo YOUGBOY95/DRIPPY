@@ -5,701 +5,335 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DRIPPY</title>
   <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <style>
-    body {
+    html, body {
+      height: 100%;
+      min-height: 100%;
       margin: 0;
+    }
+
+    body {
       font-family: 'Luckiest Guy', cursive;
-      background: #fef6e4;
-      color: #222;
+      background: linear-gradient(135deg, #2e026d, #1e3a8a, #9333ea),
+                  url('./assets/background.png') no-repeat;
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: 60% center;
+      color: #fff;
       overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
 
     header {
-    background: #fef6e4;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    height: 60px; /* Hauteur fixe pour le header */
-}
-
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      z-index: 10;
+    }
 
     header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #111;
-      text-shadow: 1px 1px #fff;
-      animation: pulse 3s infinite ease-in-out;
-      transition: transform 0.3s ease;
+      font-size: 1.8rem;
+      color: #facc15;
+      text-shadow: 1px 1px #000;
+      animation: slideRight 2s ease-in-out infinite alternate;
     }
 
-    header h1:hover {
-      transform: translateY(-3px) scale(1.07);
-    }
-
-    .header-actions {
+    .nav-buttons {
       display: flex;
-      align-items: center;
-      gap: 1rem;
+      gap: 0.8rem;
     }
 
-
-    
-
-    .header-actions .btn-buy {
-    background: #facc15;
-    border: 2px solid black;
-    padding: 0.4rem 1rem; /* Réduit le padding */
-    border-radius: 8px;
-    font-size: 0.9rem; /* Réduit la taille de police */
-    font-family: 'Luckiest Guy', cursive;
-    color: #111;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-
-    .header-actions .btn-buy:hover {
-      background: #eab308;
-    }
-
-    .header-actions a.icon-link {
-      font-size: 1.5rem;
-      color: #1d4ed8;
+    .nav-buttons a, .music-toggle {
+      background: #facc15;
+      color: #111;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
       text-decoration: none;
-      transition: transform 0.2s;
-    }
-
-    .header-actions a.icon-link:hover {
-      transform: scale(1.1);
-    }
-
-    .hero {
-      background: linear-gradient(to right, #fef6e4, #fef6e4);
-      height: 400px;
+      font-size: 0.9rem;
+      border: 2px solid black;
+      transition: background 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+      min-width: 40px;
+      cursor: pointer;
+    }
+
+    .nav-buttons a:hover, .music-toggle:hover {
+      background: #eab308;
+      transform: scale(1.05);
+    }
+
+    .nav-buttons a i, .music-toggle i {
+      font-size: 1.2rem;
+    }
+
+    .hero {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       position: relative;
+      z-index: 2;
     }
 
     .hero img {
-      max-height: 300px;
-      z-index: 1;
-      margin-bottom: -1rem;
+      width: 40vw;
+      max-width: 300px;
+      animation: bounceDrippy 3s infinite;
     }
 
-    .hero::before {
-      content: "";
-      background: url('./assets/drip-icon1.png') no-repeat;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 100px;
-      height: 100px;
-      opacity: 0.2;
-      background-size: contain;
-      z-index: 0;
+    .ca-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    .hero::after {
-      content: "";
-      background: url('./assets/drip-icon2.png') no-repeat;
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 100px;
-      height: 100px;
-      opacity: 0.2;
-      background-size: contain;
-      z-index: 0;
+    .ca-label {
+      font-size: 1.2rem;
+      color: #facc15;
+      text-shadow: 1px 1px black;
     }
 
-    .content {
-      padding: 2rem 2rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .content img {
-      max-width: 250px;
-      margin: 2rem auto 0;
-      display: block;
-    }
-
-    .content p {
-      font-size: 1.5rem;
-      margin-top: 1.5rem;
-      line-height: 1.6;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .socials {
-      margin-top: 3rem;
-    }
-
-    .socials h3 {
-      margin-bottom: 1rem;
-    }
-
-    .socials a {
-      display: inline-block;
-      margin: 0 1rem;
-      font-size: 1.5rem;
-      color: #1d4ed8;
-      text-decoration: none;
-      transition: transform 0.2s;
-    }
-
-    .socials a:hover {
-      transform: scale(1.1);
-    }
-
-    .btn {
-      display: inline-block;
+    .copy-btn {
       background: #facc15;
       border: 2px solid black;
-      color: #111;
-      padding: 1rem 2rem;
-      font-size: 1.25rem;
-      border-radius: 10px;
-      margin-top: 2rem;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #eab308;
-      
-    }
-
-    footer {
-      background: #222;
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    .drip-icons {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .drip-icons img {
-      width: 60px;
-      height: 60px;
-      opacity: 0.8;
-    }
-
-    .drip-icons img:active {
-  transform: scale(0.95);
-  transition: transform 0.1s ease;
-}
-
-
-
-
-.typewriter h2 {
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 0 auto;
-    letter-spacing: .10em;
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 2.5rem;
-    color: #111;
-    animation: 
-        typing 3.5s steps(40, end),
-        blink-caret .75s step-end infinite;
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #facc15; }
-}
-
-.content .typewriter {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-
-/* Adaptation mobile */
-@media screen and (max-width: 480px) {
-    .typewriter h2 {
-        font-size: 1.2rem;
-        letter-spacing: .1em;
-    }
-}
-
-
-
-
-
-.content h2 {
-    display: inline-block;
-    max-width: 100%;
-}
-
-
- /* Pour tablettes */
- @media screen and (max-width: 768px) {
-    header {
-      padding: 1rem;
-    }
-
-    header h1 {
-      font-size: 2rem;
-    }
-
-    .hero {
-      height: 300px;
-    }
-
-    .hero img {
-      max-height: 200px;
-    }
-
-    .content p {
-      font-size: 1.2rem;
-      padding: 0 1rem;
-    }
-
-    .drip-icons {
-      gap: 1rem;
-    }
-
-    .drip-icons img {
-      width: 50px;
-      height: 50px;
-    }
-
-    .modal-content {
-      width: 90%;
-      margin: 20% auto;
-    }
-  }
-
-  /* Pour mobiles */
-  @media screen and (max-width: 480px) {
-    header {
-        padding: 1rem;
-        flex-direction: row; /* Garde la direction en ligne */
-        justify-content: space-between;
-        align-items: center;
-        height: 60px;
-    }
-    
-    header h1 {
-        font-size: 1.8rem;
-        margin: 0;
-    }
-
-    .header-actions {
-      gap: 0.8rem;
-    }
-
-    .header-actions .btn-buy {
+      color: black;
+      font-size: 1rem;
       padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Luckiest Guy', cursive;
+    }
+
+    .copy-btn:hover {
+      background-color: #eab308;
+      transform: scale(1.05);
+    }
+
+    .welcome-text {
+      margin-top: 1rem;
+      font-size: 2.5rem;
+      color: white;
+      text-shadow: 2px 2px 3px black;
+      animation: glowText 2.5s ease-in-out infinite;
+    }
+
+    .moving-buy {
+      position: absolute;
+      background: #facc15;
+      color: black;
+      padding: 0.3rem 0.6rem;
       font-size: 0.9rem;
+      border: 2px solid black;
+      border-radius: 10px;
+      text-decoration: none;
+      font-family: 'Luckiest Guy', cursive;
+      animation: moveAround 30s linear infinite;
+      z-index: 5;
     }
 
-    .hero {
-      height: 250px;
-    }
-
-    .hero img {
-      max-height: 150px;
-    }
-
-    .content {
-      padding: 1rem;
-    }
-
-    .content p {
-      font-size: 1rem;
-    }
-
-    .content img {
-      max-width: 200px;
-    }
-
-    .btn {
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-    }
-
-    .drip-icons {
-      gap: 0.8rem;
-    }
-
-    .drip-icons img {
+    .floating-icon {
+      position: absolute;
       width: 40px;
       height: 40px;
+      animation: floatMove linear infinite;
+      z-index: 0;
+      opacity: 0.3;
     }
 
-    #copyContainer {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+    .f1 { animation-duration: 25s; top: 5%; left: 10%; }
+    .f2 { animation-duration: 30s; top: 30%; left: 80%; }
+    .f3 { animation-duration: 27s; top: 70%; left: 20%; }
+    .f4 { animation-duration: 22s; top: 15%; left: 50%; }
+    .f5 { animation-duration: 26s; top: 60%; left: 70%; }
 
-    #drippyCode {
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 0.8rem 0;
       font-size: 0.8rem;
+      z-index: 10;
     }
 
-    .socials a {
-      font-size: 1.2rem;
-      margin: 0 0.5rem;
-    }
-  }
-
-  .burger-menu {
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 20px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        z-index: 1000;
+    @keyframes moveAround {
+      0%   { top: 10%; left: 10%; }
+      25%  { top: 20%; left: 80%; }
+      50%  { top: 60%; left: 60%; }
+      75%  { top: 80%; left: 20%; }
+      100% { top: 10%; left: 10%; }
     }
 
-    .burger-menu span {
-        width: 100%;
-        height: 3px;
-        background-color: black;
-        transition: all 0.3s ease-in-out;
+    @keyframes floatMove {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0); }
     }
 
-    @media screen and (max-width: 480px) {
-        .burger-menu {
-            display: flex;
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-        }
-
-        .header-actions {
-        display: none;
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: #fef6e4;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        padding: 1.5rem 0; /* Réduit le padding vertical */
-        border-bottom: 2px solid black;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        z-index: 998;
+    @keyframes slideRight {
+      from { transform: translateX(-10px); }
+      to { transform: translateX(10px); }
     }
 
-    .header-actions.show {
-        display: flex;
+    @keyframes bounceDrippy {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
 
-    .header-actions .btn-buy {
-        width: 120px; /* Réduit la largeur */
-        text-align: center;
-        padding: 0.4rem 0.8rem; /* Réduit le padding */
-        font-size: 0.85rem; /* Réduit légèrement la taille de police */
-        margin: 0.4rem 0; /* Réduit les marges */
-        border-radius: 6px; /* Réduit légèrement le border-radius */
+    @keyframes glowText {
+      0%, 100% { text-shadow: 2px 2px 3px black; transform: scale(1); }
+      50% { text-shadow: 4px 4px 10px white; transform: scale(1.08); }
     }
 
-    .header-actions .icon-link {
-        margin: 0.5rem 0;
-    }
+    @media (max-width: 600px) {
+      body {
+        height: auto;
+        min-height: 100vh;
+        background-attachment: scroll;
+        background-position: 60% center;
+      }
 
-    .header-actions .icon-link img {
-        height: 24px; /* Réduit la taille des icônes */
-        width: 24px;
-    }
+      .hero img {
+        width: 60vw;
+        max-width: 220px;
+      }
 
-    .header-actions {
-        gap: 0.6rem; /* Réduit l'espacement entre les éléments */
-        padding: 1rem 0; /* Réduit le padding vertical */
-    }
-
-    /* Alignement des icônes sociales */
-    .header-actions a.icon-link {
-        transform: none;
-    }
-}
-
-.music-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #111;
-    padding: 0.5rem;
-    transition: transform 0.2s ease;
-    margin-top: -2px; 
-    
-}
-
-
-
-@media screen and (max-width: 480px) {
-    header {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        align-items: center;
-        padding: 0 1rem;
-        gap: 10px;
-        height: 60px;
-    }
-
-    header h1 {
+      .welcome-text {
         font-size: 1.8rem;
-        margin: 0;
-        grid-column: 1;
-    }
+        padding: 0 1rem;
+      }
 
-    .music-toggle {
-        font-size: 1.2rem;
-        width: 40px;
-        height: 40px;
-        margin: 0;
-        grid-column: 2;
-        display: flex;
-        align-items: center;
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .nav-buttons {
+        width: 100%;
         justify-content: center;
-        position: relative;
-    }
+        flex-wrap: wrap;
+      }
 
-    .burger-menu {
-        grid-column: 3;
-        justify-self: end;
-        position: relative;
-        right: 0;
-        top: 0;
-    }
-}
+      .nav-buttons a, .music-toggle {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+      }
 
+      .ca-row {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .moving-buy {
+        display: none;
+      }
+
+      .floating-icon {
+        width: 30px;
+        height: 30px;
+      }
+
+      footer {
+        font-size: 0.7rem;
+        padding: 0.5rem 0;
+        bottom: 40px;
+      }
+    }
   </style>
 </head>
 <body>
-<header>
-    <h1>DRIPPY</h1>
-    <audio id="backgroundMusic" loop>
-        <source src="./assets/drip.mp3" type="audio/mpeg">
-    </audio>
-    <button class="burger-menu" id="burgerButton">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <div class="header-actions" id="mobileMenu">    
-        <a href="https://axiom.trade/" class="btn-buy">BUY DRIPPY</a>
-        <a href="https://x.com/thedrippyart" target="_blank" class="icon-link">
-            <img src="./assets/twitter.png" alt="Twitter" style="height: 24px; width: 24px;">
-        </a>
-        <a href="https://t.me/thedrippyart" target="_blank" class="icon-link">
-            <img src="./assets/telegram.png" alt="Telegram" style="height: 24px; width: 24px;">
-        </a>
-       <button id="musicToggle" class="music-toggle">
-         <i class="fas fa-volume-mute"></i>
-</button>
-    </div>
-</header>
-  <audio id="clickSound">
-    <source src="./assets/cash.mp3" type="audio/mpeg">
+  <!-- Audio Player -->
+  <audio id="bgMusic" loop>
+    <source src="./assets/drip.mp3" type="audio/mp3">
   </audio>
-  
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const clickSound = document.getElementById("clickSound");
-  
-      // Ajoute un log pour voir si le son est chargé
-      clickSound.addEventListener('canplaythrough', () => {
-        console.log("Son prêt !");
-      });
-  
-      document.querySelectorAll('.drip-icons img').forEach(icon => {
-        icon.addEventListener('click', () => {
-          console.log("Clic détecté"); // vérifie si l’événement est bien déclenché
-          clickSound.currentTime = 0;
-          clickSound.play().catch(error => {
-            console.warn("Erreur lecture son :", error);
-          });
-        });
-      });
-    });
 
-    
-  function copyDrippyCode() {
-    const code = document.getElementById("drippyCode").textContent;
-    const button = document.getElementById("copyBtn");
+  <!-- Background floating icons -->
+  <img src="./assets/coin.png" class="floating-icon f1" alt="" />
+  <img src="./assets/dollars.png" class="floating-icon f2" alt="" />
+  <img src="./assets/crown.png" class="floating-icon f3" alt="" />
+  <img src="./assets/coin.png" class="floating-icon f4" alt="" />
+  <img src="./assets/dollars.png" class="floating-icon f5" alt="" />
 
-    navigator.clipboard.writeText(code).then(() => {
-      // Change bouton temporairement en ✅ flèche verte
-      button.innerHTML = "&#x2705;";
-      button.style.backgroundColor = "#22c55e"; // vert
-      button.style.color = "white";
+  <!-- Header -->
+  <header>
+    <h1>DRIPPY</h1>
+    <div class="nav-buttons">
+      <a href="https://axiom.trade/">BUY</a>
+      <a href="https://x.com/thedrippyart" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://t.me/thedrippyart" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+       <button id="musicToggle" class="music-toggle">
+        <i class="fas fa-volume-up"></i>
+      </button>
+    </div>
+  </header>
 
-      setTimeout(() => {
-        // Retour à l’état initial
-        button.innerHTML = "Copy";
-        button.style.backgroundColor = "#facc15"; // jaune
-        button.style.color = "black";
-      }, 2000);
-    }).catch(err => {
-      alert("Erreur lors de la copie : " + err);
-    });
-  }
-
-  // Toggle music
-
- document.addEventListener('DOMContentLoaded', () => {
-    const music = document.getElementById('backgroundMusic');
-    const musicToggle = document.getElementById('musicToggle');
-    const icon = musicToggle.querySelector('i');
-    let isMuted = false;
-
-    // Changer l'icône initiale en volume-up
-    icon.className = 'fas fa-volume-up';
-
-    // Fonction pour démarrer la musique
-    const startMusic = async () => {
-        try {
-            await music.play();
-            icon.className = 'fas fa-volume-up';
-            isMuted = false;
-        } catch (error) {
-            console.log("Erreur de lecture:", error);
-            // Si erreur, on passe en mode muet
-            icon.className = 'fas fa-volume-mute';
-            isMuted = true;
-        }
-    };
-
-    // Essayer de démarrer la musique immédiatement
-    startMusic();
-
-    // Au clic sur le bouton
-    musicToggle.addEventListener('click', () => {
-        if (isMuted) {
-            startMusic();
-        } else {
-            music.pause();
-            icon.className = 'fas fa-volume-mute';
-            isMuted = true;
-        }
-    });
-
-    // Gestion du volume
-    music.volume = 0.5;
-});
-  
- // Menu burger
- document.addEventListener('DOMContentLoaded', () => {
-        const burgerButton = document.getElementById('burgerButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        burgerButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('show');
-            
-            // Animation du burger
-            const spans = burgerButton.getElementsByTagName('span');
-            spans[0].style.transform = mobileMenu.classList.contains('show') 
-                ? 'rotate(45deg) translate(5px, 5px)' 
-                : 'none';
-            spans[1].style.opacity = mobileMenu.classList.contains('show') 
-                ? '0' 
-                : '1';
-            spans[2].style.transform = mobileMenu.classList.contains('show') 
-                ? 'rotate(-45deg) translate(7px, -7px)' 
-                : 'none';
-        });
-
-        // Fermer le menu si on clique en dehors
-        document.addEventListener('click', (e) => {
-            if (!burgerButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.remove('show');
-                const spans = burgerButton.getElementsByTagName('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-    });
-
-    
-  </script>
-  
-  
+  <!-- Main content -->
   <section class="hero">
     <img src="./assets/drippy.png" alt="Drippy Mascot" />
+    <div class="ca-row">
+      <span class="ca-label">CA : <span id="drippyCode">Coming Soon</span></span>
+      <button class="copy-btn" onclick="copyDrippyCode()">Copy</button>
+    </div>
+    <div class="welcome-text">Welcome to DRIPPY World</div>
   </section>
 
-  <div id="copyContainer" style="display: flex; justify-content: center; align-items: center; margin-top: 1rem; font-family: 'Luckiest Guy', cursive; font-size: 1.1rem;">
-    <span style="margin-right: 12px;">CA : <span id="drippyCode">Coming Soon</span></span>      
-    <button id="copyBtn" onclick="copyDrippyCode()" style="background-color: #facc15;  border: 2px solid black; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-family: 'Luckiest Guy', cursive; font-size: 1rem; transition: all 0.3s ease;">
-      Copy
-    </button>
-  </div>
-  
-  <br>
+  <!-- Moving BUY button -->
+  <a href="https://axiom.trade/" class="moving-buy">BUY DRIPPY</a>
 
-  <section class="content">
-    <div class="typewriter">
-        <h2>Welcome to DRIPPY World</h2>
-    </div>
-    <p>
-        DRIPPY is the perfect coin for real ones who stay dripped out! So if you’ve got the drip too, this coin was made for you ! 🫵💧
-    </p>
-    <img src="./assets/roi.png" alt="Drippy" />
-     <div class="socials">
-    <h3>Join the Community</h3>
-      <a href="https://x.com/thedrippyart" target="_blank" class="icon-link">
-        <img src="./assets/twitter.png" alt="Twitter" style="height: 32px; width: 32px;">
-      </a>
-      <a href="https://t.me/thedrippyart" target="_blank" class="icon-link">
-        <img src="./assets/telegram.png" alt="Telegram" style="height: 32px; width: 32px;">
-      </a>
-    </div>
-
-     <a href="https://axiom.trade/" class="btn">Buy DRIPPY</a>
-
-    <div class="drip-icons">
-      <img src="./assets/dollars.png" alt="Drip Dollar" />
-      <img src="./assets/crown.png" alt="Drip Crown" />
-      <img src="./assets/coin.png" alt="Drip Coin" />
-    </div>
-
-    
-
-   
-  </section>
-
+  <!-- Footer -->
   <footer>
     &copy; 2025 DRIPPY COIN. All rights reserved.
   </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function copyDrippyCode() {
+      const code = document.getElementById("drippyCode").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.innerText = "Copied!";
+        btn.style.backgroundColor = "#22c55e";
+        btn.style.color = "white";
+        setTimeout(() => {
+          btn.innerText = "Copy";
+          btn.style.backgroundColor = "#facc15";
+          btn.style.color = "black";
+        }, 2000);
+      });
+    }
+
+    const music = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicIcon = musicToggle.querySelector('i');
+
+    musicToggle.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        musicIcon.className = 'fas fa-volume-up';
+      } else {
+        music.pause();
+        musicIcon.className = 'fas fa-volume-mute';
+      }
+    });
+
+    document.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        musicIcon.className = 'fas fa-volume-up';
+      }
+    }, { once: true });
+  </script>
 </body>
 </html>
