@@ -135,7 +135,7 @@ header h1 {
 
 .welcome-text {
   margin-top: 0.5rem;
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #000;
   text-shadow: 2px 2px #facc15;
 }
@@ -180,6 +180,7 @@ footer {
 .tokenomics-track-content {
   display: flex;
   gap: 2rem;
+  padding: 0 1rem; /* Ajoute de l'espace sur les côtés */
 }
 
 .tokenomics-block {
@@ -197,6 +198,41 @@ footer {
   transform: scale(1.05) rotate(-1deg);
   box-shadow: 5px 5px 0px #000;
   background-color: #fde047;
+}
+
+.community-btn {
+  display: inline-block;
+  background: #facc15;
+  color: #000;
+  border: 3px solid #000;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-family: 'Bangers', cursive;
+  transition: transform 0.2s ease;
+}
+
+
+.community-btn:hover {
+  transform: scale(1.1) rotate(-1deg);
+  background-color: #eab308;
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+* {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+html, body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; 
 }
 
 @keyframes scroll-left {
