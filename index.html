@@ -118,6 +118,76 @@
       border-bottom: 5px solid #000;
       margin: 0;
     }
+
+
+    .tokenomics-marquee {
+  overflow: hidden;
+  width: 100%;
+  background: transparent;
+  border-top: 4px dashed #000;
+  border-bottom: 4px dashed #000;
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.tokenomics-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 20s linear infinite;
+}
+
+.tokenomics-track-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.tokenomics-block {
+  background: #facc15;
+  border: 3px solid #000;
+  border-radius: 14px;
+  padding: 1rem;
+  width: 200px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tokenomics-block:hover {
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 5px 5px 0px #000;
+  background-color: #fde047;
+}
+
+a:hover {
+  transform: scale(1.1) rotate(-1deg);
+  background-color: #eab308;
+}
+
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+
+
+  @media (max-width: 900px) {
+    .tokenomics-container {
+      flex-direction: row;
+      justify-content: center;
+    }
+    .tokenomics-block {
+      width: 90%;
+      max-width: 300px;
+    }
+  }
+
     @keyframes jitter {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(2px); }
@@ -177,7 +247,7 @@
     </div>
 
     <div class="ca-row">
-      <span class="ca-label">CA : <span id="drippyCode">Coming Soon</span></span>
+      <span class="ca-label">Contract Address : <span id="drippyCode">Coming Soon</span></span>
       <button class="copy-btn" onclick="copyDrippyCode()">Copy</button>
     </div>
 
@@ -185,13 +255,36 @@
       <p>
         Drippy is a mischievous character straight out of a 1930s-style cartoon. He's full of bounce, charm, and vintage vibes. Born from classic ink and timeless imagination, he embarks on thrilling adventures alongside his quirky crew of friends.
       </p>
+     <p>
+  Whether he's chasing treasure, dodging trouble, or spreading pure drip energy, Drippy always brings the fun. Want to support his wild journey? Grab some 
+  <a href="https://x.com/search?q=%24DRIPPY&src=typed_query" target="_blank" style="font-family: 'Bangers', cursive; color: #facc15; text-decoration: underline; font-size: 1.3rem;">
+    $DRIPPY
+  </a>
+</p>
+
+<section style="text-align: center; font-family: 'Bangers', cursive; color: #000; margin-top: 3rem;">
+  <h2 style="font-size: 2.5rem; text-shadow: 2px 2px #facc15; margin-bottom: 1.5rem;">Tokenomics</h2>
+
+  <div class="tokenomics-marquee">
+    <div class="tokenomics-track">
+      <!-- Piste 1 -->
+      <div class="tokenomics-track-content">
+        <div class="tokenomics-block"><strong>🏦 Total Supply :</strong><br/>1,000,000,000</div>
+        <div class="tokenomics-block"><strong>💧 Liquidity :</strong><br/>50% (locked at launch)</div>
+        <div class="tokenomics-block"><strong>🚫 No Taxes :</strong><br/>100% community-driven</div>
+        <div class="tokenomics-block"><strong>🔒 Security :</strong><br/>Liquidity locked</div>
+      </div>
+  </div>
+</section>
       <p>
-        Whether he's chasing treasure, dodging trouble, or spreading pure drip energy, Drippy always brings the fun. Want to support his wild journey? Grab some 
-        <a href="https://x.com/search?q=%24DRIPPY&src=typed_query" target="_blank" style="font-family: 'Bangers', cursive; color: #facc15; text-decoration: underline; font-size: 1.3rem;">
-          $DRIPPY
-        </a>
+        Join Drippy adventures and be part of the fun ! Follow us on Twitter and Telegram for updates, sneak peeks, and more. Let's make some drip-tastic memories together !
       </p>
-    </div>
+    <div style="margin-top: 1.5rem;">
+  <a href="https://x.com/thedrippyart" target="_blank"
+     style="display: inline-block; background: #facc15; color: #000; border: 3px solid #000; border-radius: 12px; padding: 0.8rem 1.5rem; font-size: 1.4rem; text-decoration: none; font-family: 'Bangers', cursive; transition: transform 0.2s ease;">
+    Join the Community
+  </a>
+</div>
   </section>
 
   <footer>
