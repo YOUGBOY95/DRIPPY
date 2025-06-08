@@ -1,0 +1,325 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #fcf3de;
+  font-family: 'Bangers', cursive;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: #000;
+  text-shadow: 2px 2px #facc15;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  animation: rubberBounce 2s infinite alternate;
+  margin: 0;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 999;
+}
+
+.burger span {
+  display: block;
+  width: 25px;
+  height: 4px;
+  background-color: #000;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.burger.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.burger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-buttons a, .music-toggle {
+  background: #facc15;
+  color: #000;
+  padding: 0.5rem 1rem;
+  border: 3px solid #000;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-buttons a:hover, .music-toggle:hover {
+  transform: scale(1.1) rotate(-1deg);
+  background-color: #eab308;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero img {
+  width: 300px;
+  max-width: 80%;
+  animation: jitter 0.5s infinite;
+}
+
+.ca-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.ca-label {
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.copy-btn {
+  font-family: 'Bangers', cursive;
+  background: #facc15;
+  border: 3px solid #000;
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: #eab308;
+}
+
+.welcome-text {
+  margin-top: 0.5rem;
+  font-size: 2.5rem;
+  color: #000;
+  text-shadow: 2px 2px #facc15;
+}
+
+.moving-buy {
+  position: absolute;
+  background: #facc15;
+  color: #000;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 3px solid black;
+  border-radius: 14px;
+  animation: cartoonFloat 12s linear infinite;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #000;
+  color: #facc15;
+  font-size: 0.9rem;
+  border-top: 6px solid #facc15;
+  border-bottom: 5px solid #000;
+}
+
+.tokenomics-marquee {
+  overflow: hidden;
+  width: 100%;
+  background: transparent;
+  border-top: 4px dashed #000;
+  border-bottom: 4px dashed #000;
+  padding: 1.5rem 0;
+}
+
+.tokenomics-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 20s linear infinite;
+}
+
+.tokenomics-track-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.tokenomics-block {
+  background: #facc15;
+  border: 3px solid #000;
+  border-radius: 14px;
+  padding: 1rem;
+  width: 200px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tokenomics-block:hover {
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 5px 5px 0px #000;
+  background-color: #fde047;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes jitter {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(2px); }
+  50% { transform: translateX(-2px); }
+  75% { transform: translateX(1px); }
+}
+
+@keyframes rubberBounce {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1) rotate(-2deg); }
+}
+
+@keyframes cartoonFloat {
+  0% { top: 10%; left: 10%; }
+  25% { top: 20%; left: 80%; }
+  50% { top: 60%; left: 60%; }
+  75% { top: 80%; left: 20%; }
+  100% { top: 10%; left: 10%; }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero a[href*="thedrippyart"] {
+    font-size: 1rem !important;
+    padding: 0.6rem 1rem !important;
+    width: 80%;
+    text-align: center;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    gap: 1rem;
+    padding-top: 1rem;
+    animation: slideDown 0.3s ease forwards;
+    align-items: center;
+  }
+
+  .nav-buttons.show {
+    display: flex;
+  }
+
+  .nav-buttons a, .nav-buttons .music-toggle {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    width: 80%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (max-width: 600px) {
+  .hero img {
+    width: 200px;
+  }
+
+  .welcome-text {
+    font-size: 1.8rem;
+  }
+
+  .moving-buy {
+    display: none;
+  }
+}
+
+.highlight-link {
+  font-family: 'Bangers', cursive;
+  color: #facc15;
+  text-decoration: underline;
+  font-size: 1.3rem;
+}
+
+.tokenomics-section {
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  color: #000;
+  margin-top: 3rem;
+}
+
+.tokenomics-section h2 {
+  font-size: 2.5rem;
+  text-shadow: 2px 2px #facc15;
+  margin-bottom: 1.5rem;
+}
+
+.community-btn-wrapper {
+  margin-top: 1.5rem;
+}
+
+.community-btn {
+  display: inline-block;
+  background: #facc15;
+  color: #000;
+  border: 3px solid #000;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-family: 'Bangers', cursive;
+  transition: transform 0.2s ease;
+}

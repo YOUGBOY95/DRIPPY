@@ -7,327 +7,87 @@
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #fcf3de;
-      font-family: 'Bangers', cursive;
-      overflow-x: hidden;
-      overflow-y: auto;
-      position: relative;
-      box-sizing: border-box;
-    }
-    * { box-sizing: border-box; }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      opacity: 0.2;
-      z-index: -1;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      color: #000;
-      text-shadow: 2px 2px #facc15;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      animation: rubberBounce 2s infinite alternate;
-    }
-    .nav-buttons {
-      display: flex;
-      gap: 1rem;
-    }
-    .nav-buttons a, .music-toggle {
-      background: #facc15;
-      color: #000;
-      padding: 0.5rem 1rem;
-      border: 3px solid #000;
-      border-radius: 12px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      text-decoration: none;
-    }
-    .nav-buttons a:hover, .music-toggle:hover {
-      transform: scale(1.1) rotate(-1deg);
-      background-color: #eab308;
-    }
-    .hero {
-      text-align: center;
-      padding: 2rem;
-    }
-    .hero img {
-      width: 300px;
-      max-width: 80%;
-      animation: jitter 0.5s infinite;
-    }
-    .ca-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .ca-label {
-      font-size: 1.5rem;
-      color: #000;
-    }
-    .copy-btn {
-      font-family: 'Bangers', cursive;
-      background: #facc15;
-      border: 3px solid #000;
-      padding: 0.4rem 1rem;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-    .copy-btn:hover { background: #eab308; }
-    .welcome-text {
-      margin-top: 0.5rem;
-      font-size: 2.5rem;
-      color: #000;
-      text-shadow: 2px 2px #facc15;
-    }
-    .moving-buy {
-      position: absolute;
-      background: #facc15;
-      color: #000;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border: 3px solid black;
-      border-radius: 14px;
-      animation: cartoonFloat 12s linear infinite;
-      text-decoration: none;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #000;
-      color: #facc15;
-      font-size: 0.9rem;
-      border-top: 6px solid #facc15;
-      border-bottom: 5px solid #000;
-      margin: 0;
-    }
-
-
-    .tokenomics-marquee {
-  overflow: hidden;
-  width: 100%;
-  background: transparent;
-  border-top: 4px dashed #000;
-  border-bottom: 4px dashed #000;
-  padding: 1.5rem 0;
-  position: relative;
-}
-
-.tokenomics-track {
-  display: flex;
-  width: max-content;
-  animation: scroll-left 20s linear infinite;
-}
-
-.tokenomics-track-content {
-  display: flex;
-  gap: 2rem;
-}
-
-.tokenomics-block {
-  background: #facc15;
-  border: 3px solid #000;
-  border-radius: 14px;
-  padding: 1rem;
-  width: 200px;
-  text-align: center;
-  flex-shrink: 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tokenomics-block:hover {
-  transform: scale(1.05) rotate(-1deg);
-  box-shadow: 5px 5px 0px #000;
-  background-color: #fde047;
-}
-
-a:hover {
-  transform: scale(1.1) rotate(-1deg);
-  background-color: #eab308;
-}
-
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-
-
-
-
-  @media (max-width: 900px) {
-    .tokenomics-container {
-      flex-direction: row;
-      justify-content: center;
-    }
-    .tokenomics-block {
-      width: 90%;
-      max-width: 300px;
-    }
-  }
-
-    @keyframes jitter {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(2px); }
-      50% { transform: translateX(-2px); }
-      75% { transform: translateX(1px); }
-    }
-    @keyframes rubberBounce {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.1) rotate(-2deg); }
-    }
-    @keyframes cartoonFloat {
-      0% { top: 10%; left: 10%; }
-      25% { top: 20%; left: 80%; }
-      50% { top: 60%; left: 60%; }
-      75% { top: 80%; left: 20%; }
-      100% { top: 10%; left: 10%; }
-    }
-    @media (max-width: 600px) {
-      header { flex-direction: column; gap: 1rem; }
-      .hero img { width: 200px; }
-      .welcome-text { font-size: 1.8rem; }
-      .moving-buy { display: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <audio id="bgMusic" loop preload="auto">
-    <source src="./assets/drip.mp3" type="audio/mp3" />
-  </audio>
-  
-  <audio id="copySound" preload="auto">
+<audio id="bgMusic" loop preload="auto">
+  <source src="./assets/drip.mp3" type="audio/mp3" />
+</audio>
+
+<audio id="copySound" preload="auto">
   <source src="./assets/check.mp3" type="audio/mp3">
 </audio>
 
-  <header>
-    <h1>DRIPPY</h1>
-    <div class="nav-buttons">
-      <a href="https://axiom.trade/discover" target="_blank" id="buyDrippy">BUY DRIPPY</a>
-      <a href="https://x.com/thedrippyart" target="_blank"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://t.me/thedrippyart" target="_blank" title="Telegram">
-        <i class="fab fa-telegram"></i>
-      </a>
-      <button class="music-toggle" id="musicToggle">🎶</button>
-    </div>
-  </header>
+<header>
+  <h1>DRIPPY</h1>
+  <button class="burger" id="burgerToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav-buttons" id="navButtons">
+    <a href="https://axiom.trade/discover" target="_blank" id="buyDrippy">BUY DRIPPY</a>
+    <a href="https://x.com/thedrippyart" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://t.me/thedrippyart" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+    <a href="https://dexscreener.com/" target="_blank" class="music-toggle">
+      <img src="https://dexscreener.com/favicon.ico" alt="Dexscreener Logo" style="width: 20px; height: 20px;">
+    </a>
+    <button class="music-toggle" id="musicToggle">🎶</button>
+  </nav>
+</header>
 
-  <section class="hero">
-    <div class="welcome-text">Welcome to the Drippy World!</div>
-    <div style="height: 2rem;"></div>
-    <div style="max-width: 300px; margin: 0 auto;">
-      <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; border-radius: 12px; background-color: #FEF6E4; image-rendering: pixelated;">
-        <source src="./assets/coock.webm" type="video/webm" />
-        <source src="./assets/coock.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
-    <div class="ca-row">
-      <span class="ca-label">Contract Address : <span id="drippyCode">Coming Soon</span></span>
-      <button class="copy-btn" onclick="copyDrippyCode()">Copy</button>
-    </div>
-
-    <div style="max-width: 600px; margin: 1.5rem auto; font-size: 1.2rem; color: #000; text-align: center; line-height: 1.6;">
-      <p>
-        Drippy is a mischievous character straight out of a 1930s-style cartoon. He's full of bounce, charm, and vintage vibes. Born from classic ink and timeless imagination, he embarks on thrilling adventures alongside his quirky crew of friends.
-      </p>
-     <p>
-  Whether he's chasing treasure, dodging trouble, or spreading pure drip energy, Drippy always brings the fun. Want to support his wild journey? Grab some 
-  <a href="https://x.com/search?q=%24DRIPPY&src=typed_query" target="_blank" style="font-family: 'Bangers', cursive; color: #facc15; text-decoration: underline; font-size: 1.3rem;">
-    $DRIPPY
-  </a>
-</p>
-
-<section style="text-align: center; font-family: 'Bangers', cursive; color: #000; margin-top: 3rem;">
-  <h2 style="font-size: 2.5rem; text-shadow: 2px 2px #facc15; margin-bottom: 1.5rem;">Tokenomics</h2>
-
-  <div class="tokenomics-marquee">
-    <div class="tokenomics-track">
-      <!-- Piste 1 -->
-      <div class="tokenomics-track-content">
-        <div class="tokenomics-block"><strong>🏦 Total Supply :</strong><br/>1,000,000,000</div>
-        <div class="tokenomics-block"><strong>💧 Liquidity :</strong><br/>50% (locked at launch)</div>
-        <div class="tokenomics-block"><strong>🚫 No Taxes :</strong><br/>100% community-driven</div>
-        <div class="tokenomics-block"><strong>🔒 Security :</strong><br/>Liquidity locked</div>
-      </div>
+<section class="hero">
+  <div class="welcome-text">Welcome to the Drippy World!</div>
+  <div style="height: 2rem;"></div>
+  <div style="max-width: 300px; margin: 0 auto;">
+    <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 12px;">
+      <source src="./assets/coock.webm" type="video/webm" />
+      <source src="./assets/coock.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
   </div>
+
+  <div class="ca-row">
+    <span class="ca-label">Contract Address : <span id="drippyCode">Coming Soon</span></span>
+    <button class="copy-btn" onclick="copyDrippyCode()">Copy</button>
+  </div>
+
+  <div style="max-width: 600px; margin: 1.5rem auto; font-size: 1.2rem; color: #000; text-align: center; line-height: 1.6;">
+    <p>
+      Drippy is a mischievous character straight out of a 1930s-style cartoon...
+    </p>
+    <p>
+      Want to support his wild journey? Grab some 
+      <a href="https://x.com/search?q=%24DRIPPY&src=typed_query" target="_blank" class="highlight-link">
+        $DRIPPY
+      </a>
+    </p>
+
+    <section class="tokenomics-section">
+      <h2>Tokenomics</h2>
+      <div class="tokenomics-marquee">
+        <div class="tokenomics-track">
+          <div class="tokenomics-track-content">
+            <div class="tokenomics-block"><strong>🏦 Total Supply :</strong><br/>1,000,000,000</div>
+            <div class="tokenomics-block"><strong>💧 Liquidity :</strong><br/>50% (locked at launch)</div>
+            <div class="tokenomics-block"><strong>🚫 No Taxes :</strong><br/>100% community-driven</div>
+            <div class="tokenomics-block"><strong>🔒 Security :</strong><br/>Liquidity locked</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p>Join Drippy adventures and be part of the fun !</p>
+    <div class="community-btn-wrapper">
+      <a href="https://x.com/thedrippyart" target="_blank" class="community-btn">
+        Join the Community
+      </a>
+    </div>
 </section>
-      <p>
-        Join Drippy adventures and be part of the fun ! Follow us on Twitter and Telegram for updates, sneak peeks, and more. Let's make some drip-tastic memories together !
-      </p>
-    <div style="margin-top: 1.5rem;">
-  <a href="https://x.com/thedrippyart" target="_blank"
-     style="display: inline-block; background: #facc15; color: #000; border: 3px solid #000; border-radius: 12px; padding: 0.8rem 1.5rem; font-size: 1.4rem; text-decoration: none; font-family: 'Bangers', cursive; transition: transform 0.2s ease;">
-    Join the Community
-  </a>
-</div>
-  </section>
 
-  <footer>
-    &copy; 2025 DRIPPY COIN | All rights reserved.
-  </footer>
+<footer>
+  &copy; 2025 $DRIPPY | All rights reserved.
+</footer>
 
-  <script>
-
-   function copyDrippyCode() {
-  const code = document.getElementById("drippyCode").textContent;
-  const btn = document.querySelector('.copy-btn');
-  const copySound = document.getElementById("copySound");
-
-  copySound.currentTime = 0;
-  copySound.play().catch(() => {}); // ignore l'erreur si bloqué
-
-  navigator.clipboard.writeText(code).then(() => {
-    btn.textContent = "Copied!";
-    setTimeout(() => btn.textContent = "Copy", 1500);
-  });
-}
-
-
-    const video = document.querySelector('video');
-    document.addEventListener('touchstart', () => {
-      video.play().catch(err => console.log("Autoplay error:", err));
-    }, { once: true });
-
-    const music = document.getElementById('bgMusic');
-    const musicToggle = document.getElementById('musicToggle');
-    musicToggle.addEventListener('click', () => {
-      if (music.paused) {
-        music.play();
-        musicToggle.textContent = '🔊';
-      } else {
-        music.pause();
-        musicToggle.textContent = '🔇';
-      }
-    });
-
-    document.addEventListener('click', () => {
-      if (music.paused) music.play();
-    }, { once: true });
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
