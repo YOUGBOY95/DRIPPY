@@ -75,19 +75,32 @@ header h1 {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  
 }
 
 .nav-buttons a, .music-toggle {
   background: #facc15;
   color: #000;
-  padding: 0.5rem 1rem;
-  border: 3px solid #000;
-  border-radius: 12px;
-  font-size: 1rem;
+  padding: 0.3rem 0.8rem; /* Réduit le padding */
+  border: 2px solid #000; /* Réduit l'épaisseur de la bordure */
+  border-radius: 10px; /* Réduit légèrement le border-radius */
+  font-size: 0.9rem; /* Réduit la taille de la police */
   cursor: pointer;
   transition: transform 0.2s ease;
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100px; /* Réduit la largeur minimale */
+  height: 35px; /* Réduit la hauteur */
+  text-align: center;
 }
+
+.nav-buttons a i {
+  font-size: 1rem; /* Réduit la taille des icônes */
+  line-height: 1;
+}
+
 
 .nav-buttons a:hover, .music-toggle:hover {
   transform: scale(1.1) rotate(-1deg);
